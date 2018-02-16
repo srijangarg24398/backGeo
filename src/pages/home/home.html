@@ -7,5 +7,15 @@
 </ion-header>
 
 <ion-content padding>
- 	{{location}}
+ 	{{location.time | async}}
+ 	{{location.serviceProvider | async}}
+ 	{{location.latitude | async}}
+ 	{{location.longitude | async}}
+ 	{{location.accuracy | async}}
+ 	{{location.speed | async}}
+ 	{{location.altitude | async}}
+ 	{{location.altitudeAccuracy | async}}
+ 	{{location.bearing | async}}
+ 	{{location.coords | async}}
+ 	{{location.timestamp | async}}
 </ion-content>
