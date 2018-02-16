@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController,AlertController } from 'ionic-angular';
 import { BackgroundGeolocation, BackgroundGeolocationConfig, BackgroundGeolocationResponse } from '@ionic-native/background-geolocation';
 @Component({
   selector: 'page-home',
@@ -14,12 +14,18 @@ export class HomePage {
 	    stopOnTerminate: false
 	};
 	location:BackgroundGeolocationResponse;
-  constructor(public navCtrl: NavController,private backgroundGeolocation: BackgroundGeolocation) {
+  constructor(public navCtrl: NavController,private backgroundGeolocation: BackgroundGeolocation,private alertCtrl: AlertController) {
   	this.backgroundGeolocation.configure(this.config)
   	.subscribe((location: BackgroundGeolocationResponse) => {
     	console.log(location);
     	this.location=location;
     	this.backgroundGeolocation.finish();
+      let alert = this.alertCtrl.create({
+        title: 'Location',
+        subTitle: location.latitude+" ",
+        buttons: ['Dismiss']
+      });
+      alert.present();
 	});
 	this.backgroundGeolocation.start();
   }
